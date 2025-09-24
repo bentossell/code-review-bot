@@ -1,18 +1,18 @@
 ## Code Review Bot Plan
 
-### 1. Objectives
+### 1. Objectives ✅ *Completed 2025-09-23*
 - Automatically analyze pull requests and provide actionable review comments.
 - Operate entirely via GitHub (no external hosting required for v1).
 - Offer configurable rules for files, severity levels, and LLM usage.
 
-### 2. High-Level Architecture
+### 2. High-Level Architecture ✅ *Completed 2025-09-23*
 - **GitHub Action Workflow** triggered on `pull_request` (`opened`, `synchronize`, `ready_for_review`).
 - **Action Runner (TypeScript/Node)** inside repo using a reusable composite action.
 - **LLM Review Service** (OpenAI/Anthropic via HTTPS) invoked from the action when enabled.
 - **Rule-Based Checks** using ESLint/Prettier/TypeScript diagnostics to supplement LLM feedback.
 - **GitHub REST API Client** posts summary + inline review comments.
 
-### 3. Repository Structure
+### 3. Repository Structure ✅ *Completed 2025-09-23*
 ```
 .github/
   workflows/
@@ -37,7 +37,7 @@
       index.test.ts         # unit tests with jest
 ```
 
-### 4. Workflow Outline (`.github/workflows/review.yml`)
+### 4. Workflow Outline (`.github/workflows/review.yml`) ✅ *Completed 2025-09-23*
 1. Trigger on PR events (exclude draft).
 2. Jobs:
    - `run-review` on latest `ubuntu-latest`.
@@ -47,7 +47,7 @@
    - Optional `LLM_API_KEY` for AI review (stored as repository secret).
 4. Outputs: job summary, annotations, comment ID for updates.
 
-### 5. Review Flow (within action)
+### 5. Review Flow (within action) ✅ *Completed 2025-09-23*
 1. Fetch PR metadata + patch diff via GitHub REST.
 2. Filter files based on config (include/exclude patterns, size guardrails).
 3. Run static analyzers:

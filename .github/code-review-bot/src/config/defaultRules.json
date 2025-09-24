@@ -1,0 +1,15 @@
+{
+  "enabledAnalyzers": {
+    "eslint": true,
+    "typescript": true,
+    "llm": false
+  },
+  "include": ["**/*.ts", "**/*.tsx", "**/*.js", "**/*.jsx"],
+  "exclude": ["**/node_modules/**", "**/dist/**", "**/build/**"],
+  "llm": {
+    "model": "gpt-4o-mini",
+    "maxDiffBytes": 60000
+  },
+  "severityThreshold": "warning",
+  "maxComments": 15
+}

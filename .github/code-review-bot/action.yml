@@ -1,0 +1,31 @@
+name: "Code Review Bot"
+description: "Analyze pull requests and leave review feedback"
+inputs:
+  github-token:
+    description: "GitHub token for posting comments"
+    required: true
+  llm-api-key:
+    description: "Optional API key for LLM reviewer"
+    required: false
+runs:
+  using: "composite"
+  steps:
+    - name: Setup Node.js
+      uses: actions/setup-node@v4
+      with:
+        node-version: '20'
+
+    - name: Install dependencies
+      run: npm ci
+      shell: bash
+
+    - name: Build action
+      run: npm run build
+      shell: bash
+
+    - name: Execute review
+      run: node dist/index.js
+      env:
+        GITHUB_TOKEN: ${{ inputs.github-token }}
+        LLM_API_KEY: ${{ inputs.llm-api-key }}
+      shell: bash

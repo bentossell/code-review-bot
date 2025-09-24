@@ -1,0 +1,25 @@
+{
+  "name": "code-review-bot",
+  "version": "0.1.0",
+  "private": true,
+  "scripts": {
+    "build": "tsc && esbuild src/index.ts --bundle --platform=node --target=node20 --outfile=dist/index.js",
+    "review": "npm run build && node dist/index.js"
+  },
+  "dependencies": {
+    "@actions/core": "^1.11.0",
+    "@actions/github": "^6.0.0",
+    "@octokit/graphql": "^7.1.0",
+    "@octokit/rest": "^20.1.0",
+    "eslint": "^8.57.0",
+    "execa": "^8.0.1",
+    "minimatch": "^9.0.5",
+    "zod": "^3.23.8"
+  },
+  "devDependencies": {
+    "@types/node": "^20.16.5",
+    "@types/minimatch": "^5.1.2",
+    "esbuild": "^0.23.0",
+    "typescript": "^5.6.2"
+  }
+}
